@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+<title>File Upload / Download</title>
+<style>
+.myDiv {
+  text-align: center;
+  margin: 70px;
+}
+.inputFile {
+	width: 30%;
+}
+.input {
+	text-align: center;
+}
+</style>
+</head>
+<body>
+	
+	<nav class="navbar navbar-dark bg-dark">
+	    <div class="container-fluid">
+	      <a class="navbar-brand" href="#">Spanish Audio To English</a>
+	    </div>
+	</nav>
+	
+   <div class="container">
+	   <div class="myDiv">
+	     <h3>Translate Spanish audio to English Text</h3>
+	     <form id="uploadFiles" name="uploadFiles" method="post" th:action=@{/uploadFiles} encType="multipart/form-data">
+	       <div class="row d-flex justify-content-center">
+	       		<div class="mb-3 w-50">
+				  <input class="form-control" type="file" id="formFile" name="files" required >
+				</div>
+	       </div>
+	       <button type="submit" class="btn btn-primary btn-md">Translate Audio</button>
+	     </form>
+	   </div>
+	   
+	   <div>
+	     <h3>English Text</h3>
+	     <p class="text-start" th:utext="${audio != null} ? ${audio.audioTranscription} : ''"></p>
+	     <div th:if="${audio != null}">
+	     	<a class="link-primary" th:href="@{'/downloadFile'}">Download</a>
+	     </div>
+	   </div>
+	</div>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+	
+</body>
+</html>
